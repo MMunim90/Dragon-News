@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import Header from "../components/Header";
 import RightAside from "../components/HomeLayout/RightAside";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import Footer from "../components/Footer";
 
 const About = () => {
   return (
@@ -80,6 +81,10 @@ const About = () => {
           <RightAside></RightAside>
         </aside>
       </main>
+
+      <footer className="sticky bottom-0 h-fit">
+        <Footer></Footer>
+      </footer>
     </div>
   );
 };

@@ -3,8 +3,9 @@ import { Link } from 'react-router';
 import { addBookmark } from '../utils';
 import { use } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
+import { MdDeleteForever } from "react-icons/md";
 
-const NewsCard = ({ news }) => {
+const NewsCard = ({ news, deletable, handleDelete }) => {
   // console.log(news)
   const {user} = use(AuthContext)
   const {
@@ -98,6 +99,8 @@ const NewsCard = ({ news }) => {
           <span>{total_view}</span>
         </div>
       </div>
+
+      {deletable && <div onClick={() => handleDelete(id)} className='bg-gray-900 rounded-md py-2 px-8 hover:bg-gray-300 group cursor-pointer hover:scale-105 absolute top-4 right-4'><MdDeleteForever size={20} className='text-gray-100 group-hover:text-gray-900'/></div>}
     </div>
   );
 };
