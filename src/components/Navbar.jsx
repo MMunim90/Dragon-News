@@ -18,7 +18,7 @@ const Navbar = () => {
     }
     return (
         <div className='flex justify-between items-center'>
-            <div className='font-bold text-2xl'>{user && user.displayName}</div>
+            <div className='font-bold text-2xl'>{user && user.email}</div>
         <div className='nav flex gap-5 text-accent'>  {/*lg:ml-[185px]*/}
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/about">About</NavLink>
