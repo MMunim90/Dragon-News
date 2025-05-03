@@ -1,7 +1,14 @@
 import { FaRegEye, FaBookmark, FaShareAlt } from 'react-icons/fa';
+import { Link } from 'react-router';
+import { addBookmark } from '../utils';
+import { use } from 'react';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const NewsCard = ({ news }) => {
+  // console.log(news)
+  const {user} = use(AuthContext)
   const {
+    id,
     title,
     author,
     thumbnail_url,
@@ -11,6 +18,10 @@ const NewsCard = ({ news }) => {
   } = news;
 
   const formattedDate = new Date(author.published_date).toLocaleDateString();
+
+  const handleBookmarkrd = () => {
+       addBookmark(news);
+  }
 
   return (
     <div className="card bg-base-100 shadow-lg mb-4">
@@ -29,8 +40,12 @@ const NewsCard = ({ news }) => {
         </div>
         {/* Icons */}
         <div className="flex items-center gap-3 text-gray-500 cursor-pointer">
-          <FaBookmark className="hover:text-primary transition-colors" />
-          <FaShareAlt className="hover:text-primary transition-colors" />
+          {
+            user ? <FaBookmark onClick={handleBookmarkrd} className="hover:text-primary transition-colors" /> : ""
+          }
+          {
+            user ? <FaShareAlt className="hover:text-primary transition-colors" /> : ""
+          }
         </div>
       </div>
 
@@ -48,16 +63,16 @@ const NewsCard = ({ news }) => {
           {details.length > 200 ? (
             <>
               {details.slice(0, 200)}...
-              <span className="text-blue-500 cursor-pointer ml-1">
+              <Link to={`/news-details/${id}`} className="text-blue-500 cursor-pointer ml-1 hover:underline">
                 Read More
-              </span>
+              </Link>
             </>
           ) : (
             details
           )}
         </p>
       </div>
-      <div class="divider"></div>
+      <div className="divider"></div>
       {/* Footer: Rating and Views */}
       <div className="flex items-center justify-between px-4 pb-4">
         {/* DaisyUI Star Rating */}
