@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { Link } from "react-router";
 import Header from "../components/Header";
 import NewsCard from "../components/NewsCard";
@@ -6,19 +6,24 @@ import { getBookmark, removeBookmark } from "../utils";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import EmptyState from "./EmptyState";
 import Footer from "../components/Footer";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Bookedmark = () => {
+  const {user} = use(AuthContext)
   const [newsCard, setNewsCard] = useState([]);
 //   console.log(newsCard)
 
   useEffect(() => {
     const savedNewsCard = getBookmark();
-    setNewsCard(savedNewsCard);
-  }, []);
+    const filteredNews = savedNewsCard?.filter(news => news.userUID == user.uid) || [];
+    setNewsCard(filteredNews);
+  }, [user.uid]);
 
   const handleDelete = id => {
     removeBookmark(id);
-    setNewsCard(getBookmark())
+    const savedNewsCard = getBookmark();
+    const filteredNews = savedNewsCard?.filter(news => news.userUID == user.uid) || [];
+    setNewsCard(filteredNews)
   }
 
   return (

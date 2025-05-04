@@ -22,4 +22,5 @@ export const removeBookmark = id => {
     const bookmarked = getBookmark()
     const remainingBookmark = bookmarked.filter(card => card.id !==id)
     localStorage.setItem('bookmarked', JSON.stringify(remainingBookmark))
+    toast.warning("News Removed from Bookmark");
 }

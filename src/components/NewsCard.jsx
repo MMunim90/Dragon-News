@@ -21,7 +21,9 @@ const NewsCard = ({ news, deletable, handleDelete }) => {
   const formattedDate = new Date(author.published_date).toLocaleDateString();
 
   const handleBookmarkrd = () => {
-       addBookmark(news);
+    news.userUID = user.uid
+    // console.log(user)
+    addBookmark(news);
   }
 
   return (

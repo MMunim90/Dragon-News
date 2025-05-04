@@ -1,16 +1,14 @@
-import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import React from 'react';
+import React, { use } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
-import { auth } from '../../Provider/AuthProvider';
+import { AuthContext } from '../../Provider/AuthProvider';
 import { toast } from 'react-toastify';
 
 const SocialLogin = () => {
-    const googleProvider = new GoogleAuthProvider();
-    const gitHubProvider = new GithubAuthProvider();
+    const  {signInWithGoogle, signInWithGitHub} = use(AuthContext)
     const handleGoogleSignIn = () => {
         // console.log("google sign in complete")
-        signInWithPopup(auth, googleProvider)
+        signInWithGoogle()
         .then(result => {
             // console.log(result)
             const user = result.user;
@@ -25,7 +23,7 @@ const SocialLogin = () => {
     }
 
     const handleGithubSignIn = () => {
-        signInWithPopup(auth, gitHubProvider)
+        signInWithGitHub()
         .then(result => {
             // console.log(result)
             const user = result.user;
