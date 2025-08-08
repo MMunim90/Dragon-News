@@ -1,4 +1,4 @@
-![MasterHead](https://i.ibb.co/tMQ4h2WV/Screenshot-2025-06-25-140659.png)
+![MasterHead](https://i.ibb.co.com/pBkTTT42/Screenshot-2025-08-09-001259.png)
 
 # Project overview
 Dragon new webapp is a online news portal. Newses separate by 10 categories. User can read all news by login the website. Also user can bookmark any news after login. And the bookmarked news saved in his local storage. Current Date and Latest Newses showing on the top of the website.
